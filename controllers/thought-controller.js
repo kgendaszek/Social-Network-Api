@@ -4,6 +4,7 @@ const thoughtController = {
   // get all thoughts
   getThoughts(req, res) {
     // TODO: Your code here
+    Thought.find()
 
   },
   
