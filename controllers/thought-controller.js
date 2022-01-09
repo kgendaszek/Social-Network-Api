@@ -3,16 +3,16 @@ const { Thought, User } = require('../models');
 const thoughtController = {
   getThoughts(req, res) {
     Thought.find()
-    .then((thoughts) => res.join(thoughts))
+    .then((thoughts) => res.json(thoughts))
     .catch((err) => res.status(500).json(err));
   },
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
-      .then((thought) =>
-        !thought
+      .then((thoughts) =>
+        !thoughts
           ? res.status(404).json({ message: 'No thought with that ID' })
-          : res.json(thought)
+          : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -20,7 +20,7 @@ const thoughtController = {
   createThought(req, res) {
     // TODO: create a thought and add the thought to user's thoughts array
     Thought.create(req.body)
-    .then((thought) => res.json(thought))
+    .then((thoughts) => res.json(thoughts))
     .catch((err) => {
       console.log(err);
       return res.status(500).json(err);

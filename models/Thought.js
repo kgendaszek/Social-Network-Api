@@ -27,10 +27,10 @@ const thoughtSchema = new Schema(
   {
     // TODO: Add toJSON option
     toJSON: {
-      virtuals: true,
+      // virtuals: true,
       getters: true,
     },
-    id: false,
+    // id: false,
   }
 );
 
